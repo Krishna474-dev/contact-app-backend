@@ -24,6 +24,15 @@ app.use(express.json());
 // Routes
 app.use("/api/contacts", require("./routes/ContactRoutes"));
 app.use("/api/user", require("./routes/userRoutes"));
+app.get("/api/test", (req, res) => {
+  res.json({ success: true, message: "Deployment is working fine!" });
+});
+
+// Fix incorrect response syntax
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome to the API!" });
+});
+
 
 // Error Handling Middleware
 app.use(errorHandlerFun);
