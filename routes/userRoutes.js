@@ -11,7 +11,6 @@ const router = express.Router();
 router.post("/register", userRegister);
 router.post("/login", userLogin);
 
-// Protected Route: Requires Token
 router.get("/current", validateToken, userInfo);
 
 module.exports = router;
