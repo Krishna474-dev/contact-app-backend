@@ -1,6 +1,7 @@
 const express = require("express");
 const dotenv = require("dotenv").config();
 const connectDb = require("./config/dbConnection");
+const cors = require("cors");
 // const errorHandler = require("./middleware/errorHandler");
 const errorHandlerFun = require("./middleware/errorMiddleware");
 
@@ -21,6 +22,8 @@ const PORT = process.env.PORT || 5000;
 // Middleware
 app.use(express.json());
 
+app.use(cors());
+
 // Routes
 app.use("/api/contacts", require("./routes/ContactRoutes"));
 app.use("/api/user", require("./routes/userRoutes"));
@@ -32,7 +35,6 @@ app.get("/api/test", (req, res) => {
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to the API!" });
 });
-
 
 // Error Handling Middleware
 app.use(errorHandlerFun);
